@@ -13,6 +13,8 @@ function! s:SetupPerlTestBuffer(command)
     nmap <buffer> <silent> q :q<cr>
     " pressing 'r' should re-run the tests in this buffer
     exec 'nmap <buffer> <silent> r :call <SID>RunPerlTests("' . b:runTestsCommand . '")<cr>'
+    " pressing '<Leader>F' should jump to the next test failure
+    noremap <buffer> <silent> <Leader>F /^not ok<cr>:nohl<cr>
     " run the tests
     call <SID>RunPerlTests(b:runTestsCommand)
 endfunction
