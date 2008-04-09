@@ -1,6 +1,20 @@
 " perltest.vim - Perl Testing plugin for Vim
 "
-" Maintainer: Rufus Cable <rufus@threebytesfull.com>
+" Maintainer:     Rufus Cable <rufus@threebytesfull.com>
+" Version:        0.0.1
+
+if exists('g:perltest_version') || &cp
+    finish
+endif
+
+" Version number
+let g:perltest_version = '0.0.1'
+
+" Check for Vim 7+
+if v:version < 700
+    echo 'PerlTest '.g:perltest_version.' requires Vim 7.0 or later'
+    finish
+endif
 
 function! s:SetupPerlTestBuffer(command)
     " buffer contents will be TAP output
