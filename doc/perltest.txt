@@ -1,3 +1,68 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
+PerlTest                                                 *perl-test* *perltest*
+                               Version 0.0.1
+
+Plugin for running Perl tests from within Vim.
+
+|perltest-usage|               Usage
+|perltest-installation|        Installation
+|perltest-changelog|           Change Log
+|perltest-todo|                Todo
+|perltest-credits|             Credits
+
+For Vim version 7.0 and above, and only if 'compatible' is not set.
+
+===============================================================================
+INSTALLATION                                            *perltest-installation*
+
+To install:
+  - Download perltest.zip.
+  - Extract the zip archive into your runtime directory.
+  - Start Vim
+  - Execute the following command: >
+
+      :helptag <runtime directory>/doc
+<
+    This will generate all the help tags for any file located in the doc
+    directory.
+
+===============================================================================
+USAGE                                                          *perltest-usage*
+
+To run the current Perl test file (a .t file) with prove, use: >
+
+ ,t     Run the tests with prove on the command line
+ ,T     Run the tests and display TAP output in a PerlTest buffer
+
+If you display the TAP output in a buffer, some extra key mappings are set
+up: >
+
+ r      Re-run the tests with the same test command
+ q      Close and drop the test output buffer
+ ,F     Jump to the next test failure line
+
+===============================================================================
+CHANGE LOG                                                 *perltest-changelog*
+
+0.0.1 - Initial release.
+
+===============================================================================
+TODO                                                            *perltest-todo*
+
+- Fix diagnostics folding in TAP syntax highlighting.
+- Add a way to configure the test commands run.
+- Add better help (with toggle?) to top of the TAP output.
+- Stop Vim pausing because of long lines in messages during test runs.
+- Add highlighting for test results summary section.
+- Investigate use of 'quickfix' list built from TAP output.
+
+===============================================================================
+CREDITS                                                      *perltest-credits*
+
 Author: Rufus Cable <rufus@threebytesfull.com>
+
+Inspiration: Jeff Lanzarotta's BufExplorer plugin.
+
+===============================================================================
+vim:tw=78:noet:wrap:ts=8:ft=help:
