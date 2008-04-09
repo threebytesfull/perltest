@@ -34,6 +34,7 @@ To run the current Perl test file (a .t file) with prove, use: >
 
  ,t     Run the tests with prove on the command line
  ,T     Run the tests and display TAP output in a PerlTest buffer
+ ,d     Run the tests with the Perl debugger
 
 If you display the TAP output in a buffer, some extra key mappings are set
 up: >

@@ -61,11 +61,13 @@ endfunction
 function! s:PerlTestMappings()
     noremap <buffer> ,t :!prove -vl --norc %<cr>
     noremap <buffer> ,T :call <SID>PerlTest(bufname('%'))<cr>
+    noremap <buffer> ,d :!perl -Ilib -d %<cr>
 endfunction
 
 function! s:YAMLTestMappings()
     noremap <buffer> ,t :!prove -vl --norc t/acceptance.t :: %<cr>
     noremap <buffer> ,T :call <SID>YAMLTest(bufname('%'))<cr>
+    noremap <buffer> ,d :!perl -Ilib -d t/acceptance.t %<cr>
 endfunction
 
 au! FileType perl :call <SID>PerlTestMappings()
