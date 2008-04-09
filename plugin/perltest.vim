@@ -1,0 +1,56 @@
+" perltest.vim - Perl Testing plugin for Vim
+"
+" Maintainer: Rufus Cable <rufus@threebytesfull.com>
+
+function! s:SetupPerlTestBuffer(command)
+    " buffer contents will be TAP output
+    setf TAPVerboseOutput
+    " set buffer up as a scratch buffer
+    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable
+    " save test command for subsequent re-runs
+    let b:runTestsCommand = a:command
+    " pressing 'q' should close and drop this buffer
+    nmap <buffer> <silent> q :q<cr>
+    " pressing 'r' should re-run the tests in this buffer
+    exec 'nmap <buffer> <silent> r :call <SID>RunPerlTests("' . b:runTestsCommand . '")<cr>'
+    " run the tests
+    call <SID>RunPerlTests(b:runTestsCommand)
+endfunction
+
+function! s:RunPerlTests(command)
+    " temporarily make buffer modifiable
+    setlocal modifiable
+    " wipe the buffer clean
+    exec ':1,$d'
+    " run the tests
+    exec a:command
+    " show the test command
+    echon 'Test Command: ' . a:command
+    " add the help header
+    call append(0, ["Press 'r' to re-run tests, 'q' to quit", ''])
+    " make buffer read-ony again
+    setlocal nomodifiable
+endfunction
+
+function! s:PerlTest(testfile)
+    exe 'new [PerlTest : ' . a:testfile . ']'
+    call <SID>SetupPerlTestBuffer('%! prove -vl --norc ' . a:testfile)
+endfunction
+
+function! s:YAMLTest(testfile)
+    exe 'new [YAMLTest : ' . a:testfile . ']'
+    call <SID>SetupPerlTestBuffer('%! prove -vl --norc t/acceptance.t :: ' . a:testfile)
+endfunction
+
+function! s:PerlTestMappings()
+    noremap <buffer> ,t :!prove -vl --norc %<cr>
+    noremap <buffer> ,T :call <SID>PerlTest(bufname('%'))<cr>
+endfunction
+
+function! s:YAMLTestMappings()
+    noremap <buffer> ,t :!prove -vl --norc t/acceptance.t :: %<cr>
+    noremap <buffer> ,T :call <SID>YAMLTest(bufname('%'))<cr>
+endfunction
+
+au! FileType perl :call <SID>PerlTestMappings()
+au! FileType yaml :call <SID>YAMLTestMappings()
