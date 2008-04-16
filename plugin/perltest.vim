@@ -20,7 +20,7 @@ function! s:SetupPerlTestBuffer(command)
     " buffer contents will be TAP output
     setf TAPVerboseOutput
     " set buffer up as a scratch buffer
-    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable
+    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable wrap
     " save test command for subsequent re-runs
     let b:runTestsCommand = a:command
     " pressing 'q' should close and drop this buffer
