@@ -40,8 +40,11 @@ function! s:RunPerlTests(command)
     exec ':1,$d'
     " run the tests
     exec a:command
-    " show the test command
-    echon 'Test Command: ' . a:command
+    " skip the 'press enter' bit
+    let x = &ruler | let y=&showcmd
+    set noruler noshowcmd
+    redraw
+    let &ruler = x | let &showcmd = y
     " add the help header
     call append(0, ["Press 'r' to re-run tests, 'q' to quit", ''])
     " make buffer read-ony again
