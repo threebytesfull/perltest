@@ -1,7 +1,7 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
 PerlTest                                                 *perl-test* *perltest*
-                               Version 0.0.2
+                               Version 0.0.3
 
 Plugin for running Perl tests from within Vim.
 
@@ -46,6 +46,7 @@ up: >
 ===============================================================================
 CHANGE LOG                                                 *perltest-changelog*
 
+0.0.3 - Skip the 'press enter' message after failed tests.
 0.0.2 - Added debugger key mappings.
 0.0.1 - Initial release.
 
