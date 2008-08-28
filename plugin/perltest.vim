@@ -75,3 +75,6 @@ endfunction
 
 au! FileType perl :call <SID>PerlTestMappings()
 au! FileType yaml :call <SID>YAMLTestMappings()
+
+au! BufRead,BufNewFile t/*/*.todo :setf yaml
+au! BufRead,BufNewFile t/*/*.TODO :setf yaml
