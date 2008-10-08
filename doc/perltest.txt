@@ -1,7 +1,7 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
 PerlTest                                                 *perl-test* *perltest*
-                               Version 0.0.3
+                               Version 0.0.4
 
 Plugin for running Perl tests from within Vim.
 
@@ -36,6 +36,12 @@ To run the current Perl test file (a .t file) with prove, use: >
  ,T     Run the tests and display TAP output in a PerlTest buffer
  ,d     Run the tests with the Perl debugger
 
+If the current test is not a YAML test, you can also run the test under
+Test::Aggregate with: >
+
+ ,a     Run the tests under Test::Aggregate
+ ,A     Run the tests under Test::Aggregate and display output in a buffer.
+
 If you display the TAP output in a buffer, some extra key mappings are set
 up: >
 
@@ -46,6 +52,7 @@ up: >
 ===============================================================================
 CHANGE LOG                                                 *perltest-changelog*
 
+0.0.4 - Added mappings to run under Test::Aggregate with aggtest.
 0.0.3 - Skip the 'press enter' message after failed tests.
 0.0.2 - Added debugger key mappings.
 0.0.1 - Initial release.
