@@ -56,6 +56,11 @@ function! s:PerlTest(testfile)
     call <SID>SetupPerlTestBuffer('%! prove -vl --norc ' . a:testfile)
 endfunction
 
+function! s:PerlAggTest(testfile)
+    exe 'new [PerlAggTest : ' . a:testfile . ']'
+    call <SID>SetupPerlTestBuffer('%! aggtest ' . a:testfile)
+endfunction
+
 function! s:YAMLTest(testfile)
     exe 'new [YAMLTest : ' . a:testfile . ']'
     call <SID>SetupPerlTestBuffer('%! prove -vl --norc t/acceptance.t :: ' . a:testfile)
@@ -65,6 +70,9 @@ function! s:PerlTestMappings()
     noremap <buffer> ,t :!prove -vl --norc %<cr>
     noremap <buffer> ,T :call <SID>PerlTest(bufname('%'))<cr>
     noremap <buffer> ,d :!perl -Ilib -d %<cr>
+    " extra mappings to run under aggtests
+    noremap <buffer> ,a :!aggtest %<cr>
+    noremap <buffer> ,A :call <SID>PerlAggTest(bufname('%'))<cr>
 endfunction
 
 function! s:YAMLTestMappings()
