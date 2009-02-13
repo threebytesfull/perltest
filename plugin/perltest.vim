@@ -1,14 +1,14 @@
 " perltest.vim - Perl Testing plugin for Vim
 "
 " Maintainer:     Rufus Cable <rufus@threebytesfull.com>
-" Version:        0.0.3
+" Version:        0.0.5
 
 if exists('g:perltest_version') || &cp
     finish
 endif
 
 " Version number
-let g:perltest_version = '0.0.3'
+let g:perltest_version = '0.0.5'
 
 " Check for Vim 7+
 if v:version < 700
@@ -53,7 +53,7 @@ endfunction
 
 function! s:PerlTest(testfile)
     exe 'new [PerlTest : ' . a:testfile . ']'
-    call <SID>SetupPerlTestBuffer('%! prove -vl --norc ' . a:testfile)
+    call <SID>SetupPerlTestBuffer('%! prove -vl --norc --merge ' . a:testfile)
 endfunction
 
 function! s:PerlAggTest(testfile)
@@ -63,11 +63,11 @@ endfunction
 
 function! s:YAMLTest(testfile)
     exe 'new [YAMLTest : ' . a:testfile . ']'
-    call <SID>SetupPerlTestBuffer('%! prove -vl --norc t/acceptance.t :: ' . a:testfile)
+    call <SID>SetupPerlTestBuffer('%! prove -vl --norc --merge t/acceptance.t :: ' . a:testfile)
 endfunction
 
 function! s:PerlTestMappings()
-    noremap <buffer> ,t :!prove -vl --norc %<cr>
+    noremap <buffer> ,t :!prove -vl --norc --merge %<cr>
     noremap <buffer> ,T :call <SID>PerlTest(bufname('%'))<cr>
     noremap <buffer> ,d :!perl -Ilib -d %<cr>
     " extra mappings to run under aggtests
@@ -76,7 +76,7 @@ function! s:PerlTestMappings()
 endfunction
 
 function! s:YAMLTestMappings()
-    noremap <buffer> ,t :!prove -vl --norc t/acceptance.t :: %<cr>
+    noremap <buffer> ,t :!prove -vl --norc --merge t/acceptance.t :: %<cr>
     noremap <buffer> ,T :call <SID>YAMLTest(bufname('%'))<cr>
     noremap <buffer> ,d :!perl -Ilib -d t/acceptance.t %<cr>
 endfunction

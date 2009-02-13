@@ -1,7 +1,7 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
 PerlTest                                                 *perl-test* *perltest*
-                               Version 0.0.4
+                               Version 0.0.5
 
 Plugin for running Perl tests from within Vim.
 
@@ -52,6 +52,7 @@ up: >
 ===============================================================================
 CHANGE LOG                                                 *perltest-changelog*
 
+0.0.5 - Use --merge switch with prove
 0.0.4 - Added mappings to run under Test::Aggregate with aggtest.
 0.0.3 - Skip the 'press enter' message after failed tests.
 0.0.2 - Added debugger key mappings.
