@@ -51,13 +51,13 @@ syn sync fromstart
 if !exists("did_tapverboseoutput_syntax_inits")
   let did_tapverboseoutput_syntax_inits = 1
 
-  hi      tapTestStatusOK    term=bold    ctermfg=green  guifg=Green
-  hi      tapTestStatusNotOK term=reverse ctermbg=red    guibg=Red
-  hi      tapTestTime        term=bold    ctermfg=blue   guifg=Blue
-  hi      tapTestFile        term=reverse ctermbg=yellow ctermfg=black guibg=Yellow guifg=Black
-  hi      tapTestLoadedFile  term=bold    ctermfg=black  ctermbg=cyan guifg=Black guibg=Cyan
-  hi      tapTestThreeStars  term=reverse ctermfg=blue   guifg=Blue
-  hi      tapTestPlan        term=bold    ctermfg=yellow guifg=Yellow
+  hi      tapTestStatusOK    term=bold    ctermfg=green                 guifg=Green
+  hi      tapTestStatusNotOK term=reverse                ctermbg=red                    guibg=Red
+  hi      tapTestTime        term=bold    ctermfg=blue                  guifg=Blue
+  hi      tapTestFile        term=reverse ctermfg=black  ctermbg=yellow guibg=Black     guifg=Yellow
+  hi      tapTestLoadedFile  term=bold    ctermfg=black  ctermbg=cyan   guibg=Cyan      guifg=Black
+  hi      tapTestThreeStars  term=reverse ctermfg=blue                                  guifg=Blue
+  hi      tapTestPlan        term=bold    ctermfg=yellow                                guifg=Yellow
 
   hi link tapTestFileWithDot tapTestLoadedFile
   hi link tapTestNumber      Number
