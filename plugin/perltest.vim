@@ -53,7 +53,7 @@ endfunction
 
 function! s:PerlTest(testfile)
     exe 'new [PerlTest : ' . a:testfile . ']'
-    call <SID>SetupPerlTestBuffer('%! prove -vl --norc --merge ' . a:testfile)
+    call <SID>SetupPerlTestBuffer('%! prove -vl -I t/lib --norc --merge ' . a:testfile)
 endfunction
 
 function! s:PerlAggTest(testfile)
