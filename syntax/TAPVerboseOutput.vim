@@ -33,7 +33,8 @@ syn match tapTestLoadMessage /\*\*\*.*\*\*\*/ contained contains=tapTestThreeSta
 syn match tapTestThreeStars /\*\*\*/ contained
 
 syn region tapTestRegion start=/^\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|# Looks like you planned \|All tests successful\|Bailout called\)/me=s-1 fold transparent excludenl
-syn region tapTestResultsRegion start=/^\(# Looks like you planned \|All tests successful\|Bailout called\)/ end=/$/
+syn region tapTestResultsOKRegion start=/^All tests successful/ end=/$/
+syn region tapTestResultsNotOKRegion start=/^\(# Looks like you planned \|Bailout called\)/ end=/$/
 
 set foldtext=TAPTestLine_foldtext()
 function! TAPTestLine_foldtext()
@@ -65,6 +66,9 @@ if !exists("did_tapverboseoutput_syntax_inits")
 
   hi tapTestRegion ctermbg=green
   hi tapTestResultsRegion ctermbg=red
+
+  hi tapTestResultsOKRegion ctermbg=green ctermfg=black
+  hi tapTestResultsNotOKRegion ctermbg=red ctermfg=white
 endif
 
 let b:current_syntax="tapVerboseOutput"
