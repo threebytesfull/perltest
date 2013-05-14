@@ -3,7 +3,7 @@
 " Maintainer:  Rufus Cable <rufus@threebytesfull.com>
 " Remark:      Simple syntax highlighting for TAP output
 " License:
-" Copyright (c) 2008 Rufus Cable
+" Copyright:   (c) 2008-2013 Rufus Cable
 
 if exists("b:current_syntax")
   finish
