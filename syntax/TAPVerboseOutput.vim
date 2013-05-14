@@ -33,8 +33,11 @@ syn match tapTestLoadMessage /\*\*\*.*\*\*\*/ contained contains=tapTestThreeSta
 syn match tapTestThreeStars /\*\*\*/ contained
 
 syn region tapTestRegion start=/^\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|# Looks like you planned \|All tests successful\|Bailout called\)/me=s-1 fold transparent excludenl
-syn region tapTestResultsOKRegion start=/^All tests successful/ end=/$/
-syn region tapTestResultsNotOKRegion start=/^\(# Looks like you planned \|Bailout called\)/ end=/$/
+syn region tapTestResultsOKRegion start=/^\(All tests successful\|Result: PASS\)/ end=/$/
+syn region tapTestResultsNotOKRegion start=/^\(# Looks like you planned \|Bailout called\|# Looks like you failed \|Result: FAIL\)/ end=/$/
+syn region tapTestResultsSummaryRegion start=/^Test Summary Report/ end=/^-\+$/
+
+syn region tapTestInstructionsRegion start=/\%1l/ end=/^$/
 
 set foldtext=TAPTestLine_foldtext()
 function! TAPTestLine_foldtext()
@@ -53,7 +56,7 @@ if !exists("did_tapverboseoutput_syntax_inits")
   let did_tapverboseoutput_syntax_inits = 1
 
   hi      tapTestStatusOK    term=bold    ctermfg=green                 guifg=Green
-  hi      tapTestStatusNotOK term=reverse                ctermbg=red                    guibg=Red
+  hi      tapTestStatusNotOK term=reverse ctermfg=black  ctermbg=red    guifg=Black     guibg=Red
   hi      tapTestTime        term=bold    ctermfg=blue                  guifg=Blue
   hi      tapTestFile        term=reverse ctermfg=black  ctermbg=yellow guibg=Black     guifg=Yellow
   hi      tapTestLoadedFile  term=bold    ctermfg=black  ctermbg=cyan   guibg=Cyan      guifg=Black
@@ -65,10 +68,12 @@ if !exists("did_tapverboseoutput_syntax_inits")
   hi link tapTestDiag        Comment
 
   hi tapTestRegion ctermbg=green
-  hi tapTestResultsRegion ctermbg=red
 
   hi tapTestResultsOKRegion ctermbg=green ctermfg=black
-  hi tapTestResultsNotOKRegion ctermbg=red ctermfg=white
+  hi tapTestResultsNotOKRegion ctermbg=red ctermfg=black
+  hi tapTestResultsSummaryRegion ctermbg=blue ctermfg=white
+
+  hi tapTestInstructionsRegion ctermbg=lightmagenta ctermfg=black
 endif
 
 let b:current_syntax="tapVerboseOutput"
