@@ -39,7 +39,10 @@ syn match tapTestThreeStars /\*\*\*/ contained
 syn region tapTestRegion start=/^\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|# Looks like you planned \|All tests successful\|Bailout called\)/me=s-1 fold transparent excludenl
 syn region tapTestResultsOKRegion start=/^\(All tests successful\|Result: PASS\)/ end=/$/
 syn region tapTestResultsNotOKRegion start=/^\(# Looks like you planned \|Bailout called\|# Looks like you failed \|Result: FAIL\)/ end=/$/
-syn region tapTestResultsSummaryRegion start=/^Test Summary Report/ end=/^-\+$/
+syn region tapTestResultsSummaryRegion start=/^Test Summary Report/ end=/^Files=.*$/ contains=tapTestResultsSummaryHeading,tapTestResultsSummaryNotOK
+
+syn region tapTestResultsSummaryHeading start=/^Test Summary Report/ end=/^-\+$/ contained
+syn region tapTestResultsSummaryNotOK start=/TODO passed:/ end=/$/ contained
 
 syn region tapTestInstructionsRegion start=/\%1l/ end=/^$/
 
@@ -77,7 +80,9 @@ if !exists("did_tapverboseoutput_syntax_inits")
 
   hi tapTestResultsOKRegion ctermbg=green ctermfg=black
   hi tapTestResultsNotOKRegion ctermbg=red ctermfg=black
-  hi tapTestResultsSummaryRegion ctermbg=blue ctermfg=white
+
+  hi tapTestResultsSummaryHeading ctermbg=blue ctermfg=white
+  hi tapTestResultsSummaryNotOK ctermbg=red ctermfg=black
 
   hi tapTestInstructionsRegion ctermbg=lightmagenta ctermfg=black
 endif
