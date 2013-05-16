@@ -9,15 +9,15 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn match tapTestDiag /^#.*/ contains=tapTestTodo
-syn match tapTestTime /^\[\d\d:\d\d:\d\d\].*/ contains=tapTestFile
+syn match tapTestDiag /^ *#.*/ contains=tapTestTodo
+syn match tapTestTime /^ *\[\d\d:\d\d:\d\d\].*/ contains=tapTestFile
 syn match tapTestFile /\w\+\/[^. ]*/ contained
 syn match tapTestFileWithDot /\w\+\/[^ ]*/ contained
 
-syn match tapTestPlan /^\d\+\.\.\d\+$/
+syn match tapTestPlan /^ *\d\+\.\.\d\+$/
 
 " tapTest is a line like 'ok 1', 'not ok 2', 'ok 3 - xxxx'
-syn match tapTest /^\(not \)\?ok \d\+.*/ contains=tapTestStatusOK,tapTestStatusNotOK,tapTestLine
+syn match tapTest /^ *\(not \)\?ok \d\+.*/ contains=tapTestStatusOK,tapTestStatusNotOK,tapTestLine
 
 " tapTestLine is the line without the ok/not ok status - i.e. number and
 " optional message
@@ -36,7 +36,7 @@ syn match tapTestNumber /\(ok \)\@<=\d\d*/ contained
 syn match tapTestLoadMessage /\*\*\*.*\*\*\*/ contained contains=tapTestThreeStars,tapTestFileWithDot
 syn match tapTestThreeStars /\*\*\*/ contained
 
-syn region tapTestRegion start=/^\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|# Looks like you planned \|All tests successful\|Bailout called\)/me=s-1 fold transparent excludenl
+syn region tapTestRegion start=/^ *\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|# Looks like you planned \|All tests successful\|Bailout called\)/me=s-1 fold transparent excludenl
 syn region tapTestResultsOKRegion start=/^\(All tests successful\|Result: PASS\)/ end=/$/
 syn region tapTestResultsNotOKRegion start=/^\(# Looks like you planned \|Bailout called\|# Looks like you failed \|Result: FAIL\)/ end=/$/
 syn region tapTestResultsSummaryRegion start=/^Test Summary Report/ end=/^Files=.*$/ contains=tapTestResultsSummaryHeading,tapTestResultsSummaryNotOK

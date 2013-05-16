@@ -1,7 +1,7 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
 PerlTest                                                 *perl-test* *perltest*
-                               Version 0.0.9
+                               Version 0.0.10
 
 Plugin for running Perl tests from within Vim.
 
@@ -52,6 +52,7 @@ up: >
 ===============================================================================
 CHANGE LOG                                                 *perltest-changelog*
 
+0.0.10 - Support subtest TAP output
 0.0.9 - Better highlighting of passing TODO tests and of test summary report
 0.0.8 - Improve presentation of TODO test results
 0.0.7 - Further syntax highlighting changes
