@@ -21,7 +21,7 @@ syn match tapTest /^ *\(not \)\?ok \d\+.*/ contains=tapTestStatusOK,tapTestStatu
 
 " tapTestLine is the line without the ok/not ok status - i.e. number and
 " optional message
-syn match tapTestLine /\d\+\( .*\|$\)/ contains=tapTestNumber,tapTestLoadMessage,tapTestTodo contained
+syn match tapTestLine /\d\+\( .*\|$\)/ contains=tapTestNumber,tapTestLoadMessage,tapTestTodo,tapTestSkip contained
 
 " turn ok/not ok messages green/red respectively
 syn match tapTestStatusOK /ok/ contained
@@ -30,6 +30,10 @@ syn match tapTestStatusNotOK /not ok/ contained
 " highlight todo tests
 syn match tapTestTodo /\(# TODO\|Failed (TODO)\) .*$/ contained contains=tapTestTodoRev
 syn match tapTestTodoRev /\<TODO\>/ contained
+
+" highlight skipped tests
+syn match tapTestSkip /# skip .*$/ contained contains=tapTestSkipTag
+syn match tapTestSkipTag /\(# \)\@<=skip\>/ contained
 
 " look behind so "ok 123" and "not ok 124" match test number
 syn match tapTestNumber /\(ok \)\@<=\d\d*/ contained
@@ -66,6 +70,8 @@ if !exists("did_tapverboseoutput_syntax_inits")
   hi      tapTestStatusNotOK term=reverse ctermfg=black  ctermbg=red    guifg=Black     guibg=Red
   hi      tapTestTodo        term=bold    ctermfg=yellow ctermbg=black  guifg=Yellow    guibg=Black
   hi      tapTestTodoRev     term=reverse ctermfg=black  ctermbg=yellow guifg=Black     guibg=Yellow
+  hi      tapTestSkip        term=bold    ctermfg=lightblue             guifg=LightBlue
+  hi      tapTestSkipTag     term=reverse ctermfg=black  ctermbg=lightblue guifg=Black  guibg=LightBlue
   hi      tapTestTime        term=bold    ctermfg=blue                  guifg=Blue
   hi      tapTestFile        term=reverse ctermfg=black  ctermbg=yellow guibg=Black     guifg=Yellow
   hi      tapTestLoadedFile  term=bold    ctermfg=black  ctermbg=cyan   guibg=Cyan      guifg=Black
