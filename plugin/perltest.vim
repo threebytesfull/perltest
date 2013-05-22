@@ -1,7 +1,7 @@
 " perltest.vim - Perl Testing plugin for Vim
 "
 " Maintainer:     Rufus Cable <rufus@threebytesfull.com>
-" Version:        0.0.10
+" Version:        0.0.11
 " Copyright:      (c) 2008-2013 Rufus Cable
 
 if exists('g:perltest_version') || &cp
@@ -9,7 +9,7 @@ if exists('g:perltest_version') || &cp
 endif
 
 " Version number
-let g:perltest_version = '0.0.10'
+let g:perltest_version = '0.0.11'
 
 " Check for Vim 7+
 if v:version < 700
