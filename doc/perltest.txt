@@ -1,7 +1,7 @@
 *perltest.txt* Vim plugin for running tests in Perl
 
 PerlTest                                                 *perl-test* *perltest*
-                               Version 0.0.11
+                               Version 0.0.13
 
 Plugin for running Perl tests from within Vim.
 
@@ -36,18 +36,19 @@ To run the current Perl test file (a .t file) with prove, use: >
  <Leader>T     Run the tests and display TAP output in a PerlTest buffer
  <Leader>d     Run the tests with the Perl debugger
 
-If you haven't changed the default leader key, it's the comma.
+If you haven't changed the default leader key, it's the backslash.
 
 If you display the TAP output in a buffer, some extra key mappings are set
 up: >
 
- r      Re-run the tests with the same test command
- q      Close and drop the test output buffer
- ,F     Jump to the next test failure line
+ r          Re-run the tests with the same test command
+ q          Close and drop the test output buffer
+ <Leader>F  Jump to the next test failure line
 
 ===============================================================================
 CHANGE LOG                                                 *perltest-changelog*
 
+0.0.13 - Skip colorcolumn on old Vim and update keystrokes in docs
 0.0.12 - Remove some project-specific features and use default leader
 0.0.11 - Highlight skipped tests and disable colour column in TAP buffers
 0.0.10 - Support subtest TAP output

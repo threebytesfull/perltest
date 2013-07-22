@@ -1,7 +1,7 @@
 " perltest.vim - Perl Testing plugin for Vim
 "
 " Maintainer:     Rufus Cable <rufus@threebytesfull.com>
-" Version:        0.0.12
+" Version:        0.0.13
 " Copyright:      (c) 2008-2013 Rufus Cable
 
 if exists('g:perltest_version') || &cp
@@ -9,7 +9,7 @@ if exists('g:perltest_version') || &cp
 endif
 
 " Version number
-let g:perltest_version = '0.0.12'
+let g:perltest_version = '0.0.13'
 
 " Check for Vim 7+
 if v:version < 700
@@ -21,7 +21,10 @@ function! s:SetupPerlTestBuffer(command)
     " buffer contents will be TAP output
     setf TAPVerboseOutput
     " set buffer up as a scratch buffer
-    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable wrap cc=""
+    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable wrap
+    if (version >= 703)
+        setlocal colorcolumn=""
+    endif
     " save test command for subsequent re-runs
     let b:runTestsCommand = a:command
     " pressing 'q' should close and drop this buffer
