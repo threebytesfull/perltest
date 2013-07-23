@@ -52,15 +52,29 @@ function! s:RunPerlTests(command)
     setlocal nomodifiable
 endfunction
 
+function! s:YAMLTest(testfile)
+    exe 'new [YAMLTest : ' . a:testfile . ']'
+    call <SID>SetupPerlTestBuffer('%!/usr/local/perl-journals/bin/prove -vl -I t/lib test/xsl/runner.t --norc --merge :: ' . a:testfile)
+
+endfunction
+
 function! s:PerlTest(testfile)
     exe 'new [PerlTest : ' . a:testfile . ']'
-    call <SID>SetupPerlTestBuffer('%! prove -vl -I t/lib --norc --merge ' . a:testfile)
+    call <SID>SetupPerlTestBuffer('%!/usr/local/perl-journals/bin/prove -vl -I t/lib --norc --merge ' . a:testfile)
 endfunction
 
 function! s:PerlTestMappings()
-    noremap <buffer> <Leader>t :!prove -vl --norc --merge %<cr>
+    noremap <buffer> <Leader>t :!/usr/local/perl-journals/bin/prove -vl --norc --merge %<cr>
     noremap <buffer> <Leader>T :call <SID>PerlTest(bufname('%'))<cr>
-    noremap <buffer> <Leader>d :!perl -Ilib -d %<cr>
+    noremap <buffer> <Leader>d :!/usr/local/perl-journals/bin/perl -Ilib -d %<cr>
+endfunction
+
+function! s:YAMLTestMappings()
+    noremap <buffer> <Leader>T :call <SID>YAMLTest(bufname('%'))<cr>
+endfunction
+
+function! Setup_yaml_test_mappings()
+    call <SID>YAMLTestMappings()
 endfunction
 
 au! FileType perl :call <SID>PerlTestMappings()
