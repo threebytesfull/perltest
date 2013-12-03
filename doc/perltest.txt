@@ -70,6 +70,7 @@ TODO                                                            *perltest-todo*
 - Add better help (with toggle?) to top of the TAP output.
 - Stop Vim pausing because of long lines in messages during test runs.
 - Investigate use of 'quickfix' list built from TAP output.
+- Check availability of Test::Harness options dependent on version
 
 ===============================================================================
 CREDITS                                                      *perltest-credits*
