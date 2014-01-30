@@ -57,7 +57,7 @@ endfunction
 
 function! s:PerlTest(testfile)
     exe 'new [PerlTest : ' . a:testfile . ']'
-    call <SID>SetupPerlTestBuffer('%! prove -vl -I t/lib --norc --merge ' . a:testfile)
+    call <SID>SetupPerlTestBuffer('%! prove -vl -I t/lib -I /data0/www/adcourier.broadbean/site -I /data0/www/adcourier.broadbean/site/Bean --norc --merge ' . a:testfile)
 endfunction
 
 function! s:PerlTestMappings()
